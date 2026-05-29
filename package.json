@@ -1,0 +1,34 @@
+{
+  "name": "node-red-slack",
+  "version": "0.1.0",
+  "description": "Node-RED nodes for calling Slack Web API with reusable token config",
+  "keywords": [
+    "node-red",
+    "slack",
+    "web-api",
+    "qomodo",
+    "node-red"
+  ],
+  "license": "MIT",
+  "author": "",
+  "homepage": "",
+  "engines": {
+    "node": ">=18"
+  },
+  "node-red": {
+    "version": ">=3.0.0",
+    "nodes": {
+      "slack-config": "nodes/slack-config.js",
+      "slack-api": "nodes/slack-api.js"
+    }
+  },
+  "files": [
+    "nodes",
+    "examples",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "pack": "npm pack"
+  }
+}

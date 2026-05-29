@@ -1,0 +1,12 @@
+node_modules/
+
+# npm artifacts
+*.tgz
+npm-debug.log*
+
+# local env files
+.env
+.env.*
+
+# macOS
+.DS_Store

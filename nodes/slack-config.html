@@ -1,0 +1,30 @@
+<script type="text/javascript">
+  RED.nodes.registerType("slack-config", {
+    category: "config",
+    defaults: {
+      name: { value: "" }
+    },
+    credentials: {
+      token: { type: "password", required: true }
+    },
+    label: function () {
+      return this.name || "slack-config";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="slack-config">
+  <div class="form-row">
+    <label for="node-config-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-config-input-name" placeholder="Slack workspace" />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-token"><i class="fa fa-key"></i> Bot Token</label>
+    <input type="password" id="node-config-input-token" placeholder="xoxb-..." />
+  </div>
+</script>
+
+<script type="text/html" data-help-name="slack-config">
+  <p>Reusable Slack credentials configuration.</p>
+  <p>Store your Slack bot token once and reuse it across multiple Slack nodes.</p>
+</script>

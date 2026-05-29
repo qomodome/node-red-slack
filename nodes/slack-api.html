@@ -1,0 +1,61 @@
+<script type="text/javascript">
+  RED.nodes.registerType("slack-api", {
+    category: "function",
+    color: "#a6bbcf",
+    defaults: {
+      name: { value: "" },
+      slack: { value: "", type: "slack-config", required: true },
+      method: { value: "" },
+      channel: { value: "" }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "font-awesome/fa-slack",
+    label: function () {
+      return this.name || "slack-api";
+    }
+  });
+</script>
+
+<script type="text/html" data-template-name="slack-api">
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Slack API" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-slack"><i class="fa fa-cog"></i> Slack Config</label>
+    <input type="text" id="node-input-slack" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-method"><i class="fa fa-bolt"></i> Default Method</label>
+    <input type="text" id="node-input-method" placeholder="chat.postMessage (optional)" />
+  </div>
+  <div class="form-row">
+    <label for="node-input-channel"><i class="fa fa-hashtag"></i> Default Channel</label>
+    <input type="text" id="node-input-channel" placeholder="#general or C1234567890 (optional)" />
+  </div>
+</script>
+
+<script type="text/html" data-help-name="slack-api">
+  <p>Generic Slack Web API node.</p>
+  <p>Input contract:</p>
+  <pre>msg.topic = "chat.postMessage"
+msg.payload = {
+  channel: "#temp-poc-node-red1",
+  text: "TDB"
+}</pre>
+  <p>Thread reply example:</p>
+  <pre>msg.topic = "chat.postMessage"
+msg.payload = {
+  channel: "C0123456789",
+  text: "Reply text",
+  thread_ts: "1716800000.123456"
+}</pre>
+  <p>
+    If <code>msg.topic</code> is missing, the node uses <b>Default Method</b>.
+    If <code>msg.payload.channel</code> is missing or empty, the node uses <b>Default Channel</b>.
+    If <code>msg.payload.channel</code> is set, it overrides the default channel.
+    On success, <code>msg.payload</code> is replaced with the full Slack response and metadata is added in
+    <code>msg.slack</code>.
+  </p>
+</script>

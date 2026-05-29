@@ -1,0 +1,126 @@
+[
+  {
+    "id": "9fd65d0f2a4d8e40",
+    "type": "tab",
+    "label": "Slack Example",
+    "disabled": false,
+    "info": ""
+  },
+  {
+    "id": "b2202ce62a2fcbf9",
+    "type": "inject",
+    "z": "9fd65d0f2a4d8e40",
+    "name": "Send Slack message",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 170,
+    "y": 100,
+    "wires": [
+      [
+        "6f580741be2520e9"
+      ]
+    ]
+  },
+  {
+    "id": "6f580741be2520e9",
+    "type": "function",
+    "z": "9fd65d0f2a4d8e40",
+    "name": "Build Slack request",
+    "func": "const text = \"TDB\";\nconst topic = \"chat.postMessage\";\n\nconst payload = {\n    text\n};\n\nif (msg.channel) {\n    payload.channel = msg.channel;\n}\n\nreturn {\n    topic,\n    payload\n};",
+    "outputs": 1,
+    "timeout": "",
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 370,
+    "y": 100,
+    "wires": [
+      [
+        "8897d66c26ad6241"
+      ]
+    ]
+  },
+  {
+    "id": "8897d66c26ad6241",
+    "type": "slack-api",
+    "z": "9fd65d0f2a4d8e40",
+    "name": "Slack API",
+    "slack": "d9dfba994418ad26",
+    "method": "",
+    "channel": "#test",
+    "x": 560,
+    "y": 100,
+    "wires": [
+      [
+        "ea038d7d7ce47efd"
+      ]
+    ]
+  },
+  {
+    "id": "ea038d7d7ce47efd",
+    "type": "debug",
+    "z": "9fd65d0f2a4d8e40",
+    "name": "Slack response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 760,
+    "y": 100,
+    "wires": []
+  },
+  {
+    "id": "d4e6a5b6d12db4ef",
+    "type": "catch",
+    "z": "9fd65d0f2a4d8e40",
+    "name": "Slack errors",
+    "scope": [
+      "8897d66c26ad6241"
+    ],
+    "uncaught": false,
+    "x": 150,
+    "y": 180,
+    "wires": [
+      [
+        "f71497be648825ba"
+      ]
+    ]
+  },
+  {
+    "id": "f71497be648825ba",
+    "type": "debug",
+    "z": "9fd65d0f2a4d8e40",
+    "name": "Slack error",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "true",
+    "targetType": "full",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 340,
+    "y": 180,
+    "wires": []
+  },
+  {
+    "id": "d9dfba994418ad26",
+    "type": "slack-config",
+    "name": "Slack workspace"
+  }
+]
