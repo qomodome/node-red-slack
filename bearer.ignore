@@ -1,0 +1,14 @@
+{
+  "8dfb912fe312cdc701c765c354819ad0_0": {
+    "author": "Luca Dario",
+    "comment": "Secret example",
+    "false_positive": true,
+    "ignored_at": "2026-05-29T12:38:27Z"
+  },
+  "b80a23897655f4ec7d20a0f89f16e2a9_0": {
+    "author": "Luca Dario",
+    "comment": "xoxb is a example",
+    "false_positive": true,
+    "ignored_at": "2026-05-29T12:37:56Z"
+  }
+}
