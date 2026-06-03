@@ -16,7 +16,17 @@ Node-RED nodes to call Slack Web API methods with a reusable bot token config.
 
 ## Installation
 
-TBD
+From the Node-RED editor:
+
+1. Go to `Manage palette` > `Install` tab
+2. Search for `@qomodome/node-red-slack`
+3. Click `Install`
+
+From the command line:
+
+```bash
+npm install @qomodome/node-red-slack
+```
 
 ## Use the node
 
@@ -126,4 +136,4 @@ npm publish --access public
 
 ## License
 
-TBD
+MIT License. See [LICENSE](./LICENSE) for details.
