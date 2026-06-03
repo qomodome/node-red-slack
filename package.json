@@ -1,5 +1,8 @@
 {
-  "name": "node-red-slack",
+  "name": "@qomodome/node-red-slack",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "0.1.0",
   "description": "Node-RED nodes for calling Slack Web API with reusable token config",
   "keywords": [
@@ -28,7 +31,6 @@
     "README.md"
   ],
   "scripts": {
-    "test": "node --test",
-    "pack": "npm pack"
+    "test": "node --test"
   }
 }
