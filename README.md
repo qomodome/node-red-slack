@@ -129,7 +129,7 @@ The publish process is automated via GitHub Actions when pushing a tag that matc
 
 ```bash
 npm version X.Y.Z
-git push origin X.Y.Z
+git push origin main vX.Y.Z
 ```
 
 For manual publish (not recommended - use only for emergencies):
