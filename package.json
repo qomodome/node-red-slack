@@ -14,7 +14,11 @@
   ],
   "license": "MIT",
   "author": "",
-  "homepage": "",
+  "homepage": "https://github.com/qomodome/node-red-slack#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qomodome/node-red-slack"
+  },
   "engines": {
     "node": ">=18"
   },
