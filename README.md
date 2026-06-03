@@ -125,6 +125,15 @@ npm pack
 
 ## Publishing
 
+The publish process is automated via GitHub Actions when pushing a tag that matches the `package.json` version. To publish a new version:
+
+```bash
+npm version X.Y.Z
+git push origin X.Y.Z
+```
+
+For manual publish (not recommended - use only for emergencies):
+
 0. Verify you have an npm account and are logged in with `npm whoami`. If not, run `npm login --scope=@qomodome --auth-type=web` and follow the prompts.
 1. Update version in `package.json`
 2. Verify contents with `npm pack --dry-run`
