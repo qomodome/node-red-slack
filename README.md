@@ -117,10 +117,10 @@ Run tests:
 npm test
 ```
 
-Create package tarball:
+Configure your git with custom hooks:
 
 ```bash
-npm pack
+git config core.hooksPath .githooks
 ```
 
 ## Publishing
