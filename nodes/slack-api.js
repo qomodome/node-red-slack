@@ -6,7 +6,7 @@ module.exports = function (RED) {
 
     const node = this;
     node.name = config.name;
-    node.defaultMethod = (config.method || "").trim();
+    node.defaultMethod = (config.method || "chat.postMessage").trim();
     node.defaultChannel = (config.channel || "").trim();
     node.slackConfig = RED.nodes.getNode(config.slack);
 
@@ -21,7 +21,7 @@ module.exports = function (RED) {
         }
       };
 
-      const method = ((msg.topic || node.defaultMethod || "") + "").trim();
+      const method = ((msg.topic || node.defaultMethod) + "").trim();
       const params = msg.payload;
 
       if (!node.slackConfig) {

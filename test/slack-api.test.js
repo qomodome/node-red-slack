@@ -134,6 +134,41 @@ test("uses default method when msg.topic is missing", async () => {
   assert.equal(node.errorCalls.length, 0);
 });
 
+test("uses default method when msg.topic and method are missing", async () => {
+  const restoreHttps = mockHttpsRequest((options, callback) => {
+    assert.equal(options.path, "/api/chat.postMessage");
+
+    const response = new EventEmitter();
+    response.statusCode = 200;
+
+    const request = new EventEmitter();
+    request.write = () => {};
+    request.end = () => {
+      callback(response);
+      response.emit("data", JSON.stringify({ ok: true }));
+      response.emit("end");
+    };
+
+    return request;
+  });
+
+  const RED = buildRedMock({ getToken: () => "xoxb-token" });
+  slackApiModule(RED);
+
+  const SlackApiCtor = RED.registry["slack-api"];
+  const node = new SlackApiCtor({ name: "Slack", method: "", slack: "cfg-id" });
+
+  const { err } = await invokeNode(node, {
+    payload: { channel: "C123", text: "fallback" }
+  });
+
+  restoreHttps();
+
+  assert.equal(err, undefined);
+  assert.equal(node.errorCalls.length, 0);
+});
+
+
 test("uses default channel when msg.payload.channel is missing", async () => {
   const restoreHttps = mockHttpsRequest((options, callback) => {
     const response = new EventEmitter();
@@ -210,21 +245,6 @@ test("msg.payload.channel overrides default channel", async () => {
 
   assert.equal(err, undefined);
   assert.equal(node.errorCalls.length, 0);
-});
-
-test("returns error when method is missing", async () => {
-  const RED = buildRedMock({ getToken: () => "xoxb-token" });
-  slackApiModule(RED);
-
-  const SlackApiCtor = RED.registry["slack-api"];
-  const node = new SlackApiCtor({ name: "Slack", method: "", slack: "cfg-id" });
-
-  const { err, sent } = await invokeNode(node, { payload: { channel: "C123", text: "no method" } });
-
-  assert.equal(Boolean(err), true);
-  assert.equal(err.message, "Missing Slack method in msg.topic");
-  assert.equal(sent, undefined);
-  assert.equal(node.errorCalls.length, 1);
 });
 
 test("returns error when Slack API responds with ok=false", async () => {
