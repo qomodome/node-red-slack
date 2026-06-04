@@ -1,6 +1,6 @@
 # node-red-slack
 
-Node-RED nodes to call Slack Web API methods with a reusable bot token config.
+Node-RED nodes to call [Slack Web API methods](https://docs.slack.dev/apis/web-api/).
 
 ## What you get
 
