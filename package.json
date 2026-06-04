@@ -9,8 +9,7 @@
     "node-red",
     "slack",
     "web-api",
-    "qomodo",
-    "node-red"
+    "qomodo"
   ],
   "license": "MIT",
   "author": "",
